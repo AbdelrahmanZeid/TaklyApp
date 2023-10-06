@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:takly/screens/sign_up_social_screen.dart';
-import 'package:takly/screens/splash_screen.dart';
+ import 'package:takly/screens/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-main() {
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     const Takly(),
   );
@@ -14,10 +19,15 @@ class Takly extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+       // brightness: Brightness.dark,
+        useMaterial3: true,
+      ),
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const SplashScreen(),
-        Sign_upSocialScreen.routeName:(context) => const Sign_upSocialScreen(socialName: ''),
+        // SignInSocialScreen.routeName: (context) =>
+        //     const SignInSocialScreen(socialName: ''),
       },
     );
   }

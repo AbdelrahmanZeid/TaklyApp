@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:takly/screens/sign_up_social_screen.dart';
+
 
 class CustomButton extends StatelessWidget {
-    CustomButton({super.key, required this.btnText, this.imagePath, required this.socialName,});
+  CustomButton({
+    super.key,
+    required this.btnText,
+    this.imagePath,
+    required this.socialName, required this.onPressed,
+  });
   final String btnText;
   final String? imagePath;
   final String socialName;
+  final VoidCallback onPressed;
 
- 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -15,11 +20,11 @@ class CustomButton extends StatelessWidget {
         minimumSize: Size(322, 70),
         elevation: 5,
         backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
-      onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: (context){
-        return Sign_upSocialScreen(socialName: socialName);
-      }),),
+      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

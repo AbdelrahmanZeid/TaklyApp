@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576186524532",
+    "project_id": "takly-d5125",
+    "storage_bucket": "takly-d5125.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576186524532:android:864c1b8eb7b42b9e914221",
+        "android_client_info": {
+          "package_name": "com.example.takly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576186524532-p5fueqf251jqprn98uk4me9ndo5c73p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSj5BeAYMy0LGmsXWRBYXUcNX4142NNKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576186524532-p5fueqf251jqprn98uk4me9ndo5c73p6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
