@@ -10,6 +10,7 @@ main() async {
   );
   runApp(
     const Takly(),
+    
   );
 }
 

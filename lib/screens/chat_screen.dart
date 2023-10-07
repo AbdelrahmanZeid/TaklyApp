@@ -47,38 +47,42 @@ class ChatScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
           child: Column(
             children: [
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     IconButton(
+              //       onPressed: () => Navigator.pop(context),
+              //       icon: Icon(
+              //         Icons.arrow_back_ios,
+              //         color: Colors.black,
+              //       ),
+              //     ),
+              //     Text(
+              //       'Annette Black',
+              //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              //     ),
+              //     Container(
+              //         width: 62,
+              //         height: 62,
+              //         decoration: BoxDecoration(
+              //           image: DecorationImage(
+              //             fit: BoxFit.cover,
+              //             image: AssetImage(
+              //               'assets/images/Main_Image/User_Active.png',
+              //             ),
+              //           ),
+              //         ),
+              //         child: null),
+              //   ],
+              // ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
-                    'Annette Black',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  Container(
-                      width: 62,
-                      height: 62,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            'assets/images/Main_Image/User_Active.png',
-                          ),
-                        ),
-                      ),
-                      child: null),
+                  MessageBubble(),
                 ],
               ),
-              Expanded(
-                child: ChatBody(),
-              ),
-              SendMessage(),
+            //  const SizedBox(height: 450,),
+            //   SendMessage(),
             ],
           ),
         ),
@@ -87,12 +91,31 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-class ChatBody extends StatelessWidget {
-  const ChatBody({super.key});
+class MessageBubble extends StatelessWidget {
+  const MessageBubble({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return  Container(
+        height: 60,
+        width: 150,
+        alignment: Alignment.centerLeft,
+    
+        margin: EdgeInsets.all(8),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        decoration: BoxDecoration(
+          color: kPrimaryColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+            bottomRight: Radius.circular(12),
+          ),
+        ),
+        child: Text(
+          "hello",
+          style: TextStyle(color: Colors.white),
+        ),
+      );
   }
 }
 
