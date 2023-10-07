@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:takly/constants/app_constant.dart';
-import 'package:takly/screens/sign_in_screen.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -10,79 +7,57 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-
-        actions: [
-          Text(
-            'Log out',
-            style: TextStyle(
-                color: Colors.red, fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          IconButton(
-            onPressed: () async {
-              GoogleSignIn().disconnect();
-              final firebase = await FirebaseAuth.instance;
-              firebase.signOut();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return SignInScreen();
-                  },
-                ),
-              );
-            },
-            icon: Icon(
-              Icons.logout_outlined,
-              color: Colors.black,
-            ),
-          ),
-        ],
-      ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
           child: Column(
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     IconButton(
-              //       onPressed: () => Navigator.pop(context),
-              //       icon: Icon(
-              //         Icons.arrow_back_ios,
-              //         color: Colors.black,
-              //       ),
-              //     ),
-              //     Text(
-              //       'Annette Black',
-              //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              //     ),
-              //     Container(
-              //         width: 62,
-              //         height: 62,
-              //         decoration: BoxDecoration(
-              //           image: DecorationImage(
-              //             fit: BoxFit.cover,
-              //             image: AssetImage(
-              //               'assets/images/Main_Image/User_Active.png',
-              //             ),
-              //           ),
-              //         ),
-              //         child: null),
-              //   ],
-              // ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MessageBubble(),
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.black,
+                      size: 20,
+                    ),
+                  ),
+                  Text(
+                    'Annette Black',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+                  ),
+                  Container(
+                      width: 55,
+                      height: 55,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            'assets/images/Main_Image/User_Active.png',
+                          ),
+                        ),
+                      ),
+                      child: null),
                 ],
               ),
-            //  const SizedBox(height: 450,),
-            //   SendMessage(),
+              
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    return MessageBubble();
+                  },
+                  itemCount: 20,
+                ),
+              ),
+
+              Card(
+                elevation: 15,
+                child: SendMessage(),
+              ),
             ],
           ),
         ),
@@ -96,26 +71,25 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-        height: 60,
-        width: 150,
-        alignment: Alignment.centerLeft,
-    
-        margin: EdgeInsets.all(8),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-        decoration: BoxDecoration(
-          color: kPrimaryColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(12),
-            topRight: Radius.circular(12),
-            bottomRight: Radius.circular(12),
-          ),
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.all(8),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      decoration: BoxDecoration(
+        color: kPrimaryColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          // topRight: Radius.circular(16),
+          bottomRight: Radius.circular(12),
+          bottomLeft: Radius.circular(12),
         ),
-        child: Text(
-          "hello",
-          style: TextStyle(color: Colors.white),
-        ),
-      );
+      ),
+      child: Text(
+        "hello my name m facul",
+        style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),
+      ),
+    );
   }
 }
 
@@ -143,22 +117,28 @@ class _SendMessageState extends State<SendMessage> {
           child: TextFormField(
             controller: chatController,
             decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                  chatController.clear();
+                },
+                icon: Icon(
+                  Icons.send,
+                  color: kPrimaryColor,
+                ),
+              ),
               label: Text(
-                'Enter your message',
-                style: TextStyle(color: Colors.grey, fontSize: 14),
+                'Message',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
               ),
             ),
           ),
-        ),
-        IconButton(
-          onPressed: () {
-            FocusScope.of(context).unfocus();
-            chatController.clear();
-          },
-          icon: Icon(Icons.send),
         ),
       ],
     );
