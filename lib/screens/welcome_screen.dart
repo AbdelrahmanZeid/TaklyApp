@@ -30,15 +30,8 @@ class WelcomeScreen extends StatelessWidget {
                   btnText: 'Sign in with Google',
                   imagePath: 'assets/images/Icon_Button/iconGoogle.png',
                   socialName: 'Google',
-                  onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ChatScreen();
-                        },
-                      ),
-                    );
+                  onPressed: ()  {
+                   Navigator.pushNamed(context, ChatScreen.routeName);
                   },
                 ),
                 const SizedBox(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takly/cubits/bloc_observer.dart';
 import 'package:takly/cubits/login_cubit/login_cubit.dart';
+import 'package:takly/cubits/send_messsage_cubit/send_message_cubit.dart';
 import 'package:takly/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:takly/screens/chat_screen.dart';
 import 'package:takly/screens/login_screen.dart';
@@ -32,6 +33,9 @@ class Takly extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SignUpCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SendMessageCubit(),
         ),
       ],
       child: MaterialApp(

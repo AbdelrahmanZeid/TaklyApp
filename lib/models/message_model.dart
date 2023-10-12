@@ -1,11 +1,14 @@
 class Message {
   final String message;
 
-  Message({required this.message});
+  final int id;
+
+  Message({required this.message, required this.id});
 
   factory Message.fromjson(jsonData) {
     return Message(
       message: jsonData['message'],
+      id: jsonData['id'],
     );
   }
 }

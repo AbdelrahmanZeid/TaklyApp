@@ -1,63 +1,66 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takly/constants/app_constant.dart';
+import 'package:takly/cubits/send_messsage_cubit/send_message_cubit.dart';
+import 'package:takly/cubits/send_messsage_cubit/send_message_state.dart';
+import 'package:takly/screens/chat_screen.dart';
 
-class SendMessage extends StatefulWidget {
-  const SendMessage({super.key});
+class SendMessage extends StatelessWidget {
+  SendMessage({super.key});
 
-  @override
-  State<SendMessage> createState() => _SendMessageState();
-}
-
-class _SendMessageState extends State<SendMessage> {
   TextEditingController chatController = TextEditingController();
   @override
-  CollectionReference message =
-      FirebaseFirestore.instance.collection('messages');
-
-  void dispose() {
-    super.dispose();
-    chatController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: TextField(
-            enableSuggestions: true,
-            controller: chatController,
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: () {
-                  message.add({
-                    'message': chatController,
-                    'createdAt': DateTime.now(),
-                  });
-                  FocusScope.of(context).unfocus();
-                  chatController.clear();
-                },
-                icon: Icon(
-                  Icons.send,
-                  color: kPrimaryColor,
+    return BlocListener<SendMessageCubit, SendMessageStates>(
+      listener: (BuildContext context, state) {
+        if (state is SendMessageSuccess) {
+          print('success');
+        } else if (state is SendMessageFailuer) {
+          print('fai');
+        }
+      },
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              enableSuggestions: true,
+              controller: chatController,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    SendMessageCubit.get(context).addData(
+                      messageText: chatController.text,
+                    );
+                    FocusScope.of(context).unfocus();
+                    chatController.clear();
+                    scroll.animateTo(
+                      0,
+                      duration: Duration(milliseconds: 800),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                  icon: Icon(
+                    Icons.send,
+                    color: kPrimaryColor,
+                  ),
                 ),
-              ),
-              label: Text(
-                'Message',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+                label: Text(
+                  'Message',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
