@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:takly/screens/sign_in_screen.dart';
+import 'package:takly/screens/welcome_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,8 +12,6 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-
         actions: [
           Text(
             'Log out',
@@ -29,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return SignInScreen();
+                    return WelcomeScreen();
                   },
                 ),
               );

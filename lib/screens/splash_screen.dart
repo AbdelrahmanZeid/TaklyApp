@@ -2,7 +2,7 @@ import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:takly/constants/app_constant.dart';
 
-import 'sign_in_screen.dart';
+import 'welcome_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
             logo: Image.asset('assets/images/Main_Image/Talky.png'),
             backgroundColor: kPrimaryColor,
             logoWidth: 120,
-            navigator: SignInScreen(),
+            navigator: WelcomeScreen(),
           ),
         ),
       ),
