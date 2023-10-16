@@ -8,3 +8,4 @@ class SendMessageFailuer extends SendMessageStates {
     required this.errorMessage,
   });
 }
+

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-
 class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
     required this.btnText,
     this.imagePath,
-    required this.socialName, required this.onPressed,
+    required this.socialName,
+    required this.onPressed,
   });
   final String btnText;
   final String? imagePath;
@@ -28,7 +28,11 @@ class CustomButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset(imagePath!),
+          Image.asset(
+            imagePath!,
+            width: 30,
+            height: 30,
+          ),
           Text(
             btnText,
             style: TextStyle(color: Colors.black, fontSize: 18),

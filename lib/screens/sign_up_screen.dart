@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({
     super.key,
   });
-
+ 
   @override
   final formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
@@ -55,12 +55,27 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Sign up with Email',
+                        'Sign Up ',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       const SizedBox(
-                        height: 35,
+                        height: 30,
+                      ),
+                      CustomTextFormField(
+                        lable: 'Enter your name',
+                        textInputType: TextInputType.name,
+                        obscureText: false,
+                        onPressed: () {},
+                        validator: (String? value) {},
+                        onSaved: (value) {
+                          if(value!=null){
+                            signUpCubit.userName=value;
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       CustomTextFormField(
                         lable: 'Enter your Email address',
@@ -125,7 +140,7 @@ class SignUpScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 160,
+                        height: 130,
                       ),
                       ElevatedButton(
                         onPressed: () async {
@@ -160,7 +175,7 @@ class SignUpScreen extends StatelessWidget {
                           Navigator.pushNamed(context, LoginScreen.routeName);
                         },
                         child: Text(
-                          'Sign in ',
+                          'Login ',
                           style: TextStyle(
                               color: kPrimaryColor,
                               fontWeight: FontWeight.bold,

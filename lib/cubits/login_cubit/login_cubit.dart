@@ -13,10 +13,11 @@ class LoginCubit extends Cubit<LoginStates> {
     isviasable = !isviasable;
     emit(SwitchValueState());
   }
-
+  
   String userEmail = '';
   String userPassword = '';
   signInWithEmail() async {
+   
     try {
       emit(
         LoginLoadingState(),

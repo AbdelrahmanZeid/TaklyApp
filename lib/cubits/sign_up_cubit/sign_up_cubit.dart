@@ -17,7 +17,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
 
   String userEmail = '';
   String userPassword = '';
-
+   String userName='';
   Future<void> signUpWithEmail() async {
     try {
       emit(
