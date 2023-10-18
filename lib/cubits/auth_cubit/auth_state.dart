@@ -33,3 +33,13 @@ class AuthWithTwitterStateFailuer extends AuthStates {
     required this.errorMessage,
   });
 }
+class AuthWithPhoneStateSuccess extends AuthStates {}
+
+class AuthWithPhoneStateLoadig extends AuthStates {}
+
+class AuthWithPhoneStateFailuer extends AuthStates {
+  final String errorMessage;
+  AuthWithPhoneStateFailuer({
+    required this.errorMessage,
+  });
+}

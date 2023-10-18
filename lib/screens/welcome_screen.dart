@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:takly/constants/app_constant.dart';
 import 'package:takly/cubits/auth_cubit/auth_cubit.dart';
 import 'package:takly/cubits/auth_cubit/auth_state.dart';
-import 'package:takly/screens/chat_screen.dart';
-import 'package:takly/screens/home_screen.dart';
+ import 'package:takly/screens/home_screen.dart';
 
 import 'package:takly/screens/sign_up_screen.dart';
 import 'package:takly/widgets/custom_button.dart';
@@ -118,7 +117,9 @@ class WelcomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      
+                    },
                     child: Text(
                       'Continue with phone number',
                       style: TextStyle(color: Colors.black, fontSize: 18),

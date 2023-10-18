@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
- import 'package:takly/screens/profile_screen.dart';
+import 'package:takly/screens/chat_screen.dart';
+import 'package:takly/screens/profile_screen.dart';
+import 'package:takly/widgets/custom_chat_call_item.dart';
+import 'package:takly/widgets/custom_chat_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,7 +30,7 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.grey,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
           IconButton(
             onPressed: () {
@@ -40,25 +43,46 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-
-
-      body: 
-      HomeScreenBody(),
+      body: HomeScreenBody(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(
+        context,
+        ChatScreen.routeName,
+      );
+        },
+        child: Icon(
+          Icons.message,
+        ),
+      ),
     );
   }
 }
-
-
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  ListView(
-      children: [
-        
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(18),
+      child: ListView(
+        children: [
+          CustomChatCallItem(),
+          const SizedBox(
+            height: 15,
+          ),
+          CustomChatItem(
+            image: 'assets/images/Main_Image/User_50px.png',
+            title: 'Annette Black',
+            subTitle: 'hay did you talk to her',
+          ),
+        ],
+      ),
     );
   }
 }
+
+
+
+

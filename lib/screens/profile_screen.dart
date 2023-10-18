@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:takly/cubits/pick_image_cubit/pick_image_cubit.dart';
 import 'package:takly/cubits/pick_image_cubit/pick_image_state.dart';
+import 'package:takly/helper/save_value.dart';
 import 'package:takly/screens/welcome_screen.dart';
 import 'package:takly/theme/change_theme.dart';
 import 'package:takly/widgets/custom_text_form_field.dart';
@@ -15,6 +16,8 @@ import 'package:takly/widgets/custom_text_form_field.dart';
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
   final formKey = GlobalKey<FormState>();
+
+  final saveValue = SaveValue();
   static const routeName = 'profilescreen';
   @override
   Widget build(BuildContext context) {
@@ -43,16 +46,6 @@ class ProfileScreen extends StatelessWidget {
         ],
         leading: IconButton(
           onPressed: () {
-            // if (Get.isDarkMode) {
-            //   Get.changeTheme(
-            //     ThemeData.light(),
-            //   );
-            // } else {
-            //   Get.changeTheme(
-            //     ThemeData.dark(),
-            //   );
-            // }
-
             ChangeTheme().changeThemeMode();
           },
           icon: Icon(
@@ -122,22 +115,29 @@ class ProfileScreen extends StatelessWidget {
                     height: 50,
                   ),
                   CustomTextFormField(
+                    myController: TextEditingController(
+                      text: saveValue.getValue('myData'),
+                    ),
+                    onChanged: (value) {
+                      if (value != null) {
+                        saveValue.setValue('myData', value);
+                      }
+                    },
                     textInputType: TextInputType.name,
                     lable: ' Name',
                     obscureText: false,
-                    onPressed: () {},
                     validator: (val) {
-                      if (val == null){
+                      if (val == null) {
                         'shouldnot be empty';
-                      }else{
-                        return ;
+                      } else {
+                        return;
                       }
                     },
                     onSaved: (val) {
-                     if (val! .isEmpty){
+                      if (val!.isEmpty) {
                         'shouldnot be empty';
-                      }else{
-                        return ;
+                      } else {
+                        return;
                       }
                     },
                   ),
@@ -145,52 +145,63 @@ class ProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   CustomTextFormField(
+                    myController: TextEditingController(
+                      text: saveValue.getValue('myData2'),
+                    ),
+                    onChanged: (value) {
+                      if (value != null) {
+                        saveValue.setValue('myData2', value);
+                      }
+                    },
                     textInputType: TextInputType.name,
-                    lable: ' Status',
+                    lable: ' Bio',
                     obscureText: false,
-                    onPressed: () {},
                     validator: (val) {
-                     if (val == null){
+                      if (val == null) {
                         'shouldnot be empty';
-                      }else{
-                        return ;
+                      } else {
+                        return;
                       }
                     },
                     onSaved: (val) {
-                      if (val! .isEmpty){
+                      if (val!.isEmpty) {
                         'shouldnot be empty';
-                      }else{
-                        return ;
+                      } else {
+                        return;
                       }
                     },
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  CustomTextFormField(
-                    textInputType: TextInputType.name,
-                    lable: 'Active',
-                    obscureText: false,
-                    onPressed: () {},
-                    validator: (val) {
-                      if (val! .isEmpty){
-                        'shouldnot be empty';
-                      }else{
-                        return ;
-                      }
-                    },
-                    onSaved: (val) {
-                     if (val! .isEmpty){
-                        'shouldnot be empty';
-                      }else{
-                        return ;
-                      }
-                    },
-                    suffixIcon: Icons.arrow_drop_down,
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  ),
+                  // CustomTextFormField(
+                  //   textInputType: TextInputType.name,
+                  //   lable: 'Active',
+                  //   obscureText: false,
+                  //   onPressed: () {
+
+                  //   },
+                  //   validator: (val) {
+                  //     if (val!.isEmpty) {
+                  //       'shouldnot be empty';
+                  //     } else {
+                  //       return;
+                  //     }
+                  //   },
+                  //   onSaved: (val) {
+                  //     if (val!.isEmpty) {
+                  //       'shouldnot be empty';
+                  //     } else {
+                  //       return;
+                  //     }
+                  //   },
+                  //   suffixIcon: Icons.arrow_drop_down,
+                  // ),
+                  // const SizedBox(
+                  //   height: 60,
+                  // ),
+
+                  const SizedBox(height: 10,),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(340, 60),
