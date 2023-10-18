@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({
     super.key,
   });
- 
+
   @override
   final formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
@@ -68,11 +68,7 @@ class SignUpScreen extends StatelessWidget {
                         obscureText: false,
                         onPressed: () {},
                         validator: (String? value) {},
-                        onSaved: (value) {
-                          if(value!=null){
-                            signUpCubit.userName=value;
-                          }
-                        },
+                        onSaved: (value) {},
                       ),
                       const SizedBox(
                         height: 20,

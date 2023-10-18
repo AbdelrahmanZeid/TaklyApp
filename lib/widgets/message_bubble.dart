@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takly/constants/app_constant.dart';
-import 'package:takly/models/message_model.dart';
+ import 'package:takly/models/message_model.dart';
 
 class MessageBubble extends StatelessWidget {
   const MessageBubble({super.key, required this.message});

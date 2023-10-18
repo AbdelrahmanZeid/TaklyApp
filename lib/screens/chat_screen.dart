@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:takly/cubits/send_messsage_cubit/send_message_cubit.dart';
 import 'package:takly/models/message_model.dart';
-import 'package:takly/screens/profile_screen.dart';
-
+ 
 import '../widgets/message_bubble.dart';
 import '../widgets/send_message.dart';
 
@@ -45,24 +44,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   height: 40,
                 ),
                 centerTitle: true,
-                actions: [
-                  GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, ProfileScreen.routeName),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 7),
-                      child: Container(
-                        width: 52,
-                        height: 52,
-                        child: CircleAvatar(
-                          child: Image.asset(
-                            'assets/images/Main_Image/User_Active.png',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
               ),
               body: SafeArea(
                 child: Padding(

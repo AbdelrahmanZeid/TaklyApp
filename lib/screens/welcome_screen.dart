@@ -6,6 +6,7 @@ import 'package:takly/constants/app_constant.dart';
 import 'package:takly/cubits/auth_cubit/auth_cubit.dart';
 import 'package:takly/cubits/auth_cubit/auth_state.dart';
 import 'package:takly/screens/chat_screen.dart';
+import 'package:takly/screens/home_screen.dart';
 
 import 'package:takly/screens/sign_up_screen.dart';
 import 'package:takly/widgets/custom_button.dart';
@@ -28,7 +29,7 @@ class WelcomeScreen extends StatelessWidget {
                 if (state is AuthWithGoogleStateLoadig) {
                   CircularProgressIndicator();
                 } else if (state is AuthWithGoogleStateSuccess) {
-                  Navigator.pushNamed(context, ChatScreen.routeName);
+                  Navigator.pushNamed(context, HomeScreen.routeName);
                   log('success');
                 } else {
                   log('fail');
@@ -73,6 +74,8 @@ class WelcomeScreen extends StatelessWidget {
                     socialName: 'Apple',
                     onPressed: ()async {
                       await authCubit.signInWithTwitter();
+
+
                     },
                   ),
                   const SizedBox(

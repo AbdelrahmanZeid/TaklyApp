@@ -9,11 +9,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:takly/cubits/pick_image_cubit/pick_image_cubit.dart';
 import 'package:takly/cubits/pick_image_cubit/pick_image_state.dart';
 import 'package:takly/screens/welcome_screen.dart';
+import 'package:takly/theme/change_theme.dart';
 import 'package:takly/widgets/custom_text_form_field.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
+  ProfileScreen({super.key});
+  final formKey = GlobalKey<FormState>();
   static const routeName = 'profilescreen';
   @override
   Widget build(BuildContext context) {
@@ -42,15 +43,17 @@ class ProfileScreen extends StatelessWidget {
         ],
         leading: IconButton(
           onPressed: () {
-            if (Get.isDarkMode) {
-              Get.changeTheme(
-                ThemeData.light(),
-              );
-            } else {
-              Get.changeTheme(
-                ThemeData.dark(),
-              );
-            }
+            // if (Get.isDarkMode) {
+            //   Get.changeTheme(
+            //     ThemeData.light(),
+            //   );
+            // } else {
+            //   Get.changeTheme(
+            //     ThemeData.dark(),
+            //   );
+            // }
+
+            ChangeTheme().changeThemeMode();
           },
           icon: Icon(
             Icons.dark_mode,
@@ -58,87 +61,160 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: BlocConsumer<PickImageCubit,PickImageStates>(
+      body: BlocConsumer<PickImageCubit, PickImageStates>(
         builder: (BuildContext ctx, state) {
-              PickImageCubit pickImageCubit = PickImageCubit.get(ctx);
+          PickImageCubit pickImageCubit = PickImageCubit.get(ctx);
 
           return Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
             ),
-            child: ListView(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: CircleAvatar(
-                    radius: 70,
-                    child:pickImageCubit.url!=null? Image.network(
-                      pickImageCubit.url!,
-                      // width: 150,
-                      // height: 150,
-                    ):Image.asset('assets/images/Main_Image/no_image.jpg'),
+            child: Form(
+              key: formKey,
+              child: ListView(
+                children: [
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    await pickImageCubit.pickImage();
-                  },
-                  child: Text('pick image'),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomTextFormField(
-                  textInputType: TextInputType.name,
-                  lable: ' Name',
-                  obscureText: false,
-                  onPressed: () {},
-                  validator: (val) {},
-                  onSaved: (val) {},
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextFormField(
-                  textInputType: TextInputType.name,
-                  lable: ' Status',
-                  obscureText: false,
-                  onPressed: () {},
-                  validator: (val) {},
-                  onSaved: (val) {},
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextFormField(
-                  textInputType: TextInputType.name,
-                  lable: 'Active',
-                  obscureText: false,
-                  onPressed: () {},
-                  validator: (val) {},
-                  onSaved: (val) {},
-                  suffixIcon: Icons.arrow_drop_down,
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(340, 60),
-                    elevation: 5,
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Center(
+                        child: Container(
+                          width: 130,
+                          height: 130,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: pickImageCubit.url != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(65),
+                                  child: Image.network(
+                                    pickImageCubit.url!,
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(65),
+                                  child: Image.asset(
+                                    'assets/images/Main_Image/no_image.jpg',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 130,
+                        top: 100,
+                        child: IconButton(
+                          onPressed: () async {
+                            await pickImageCubit.pickImage();
+                          },
+                          icon: Icon(
+                            Icons.photo,
+                            color: Colors.blue,
+                            size: 35,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  CustomTextFormField(
+                    textInputType: TextInputType.name,
+                    lable: ' Name',
+                    obscureText: false,
+                    onPressed: () {},
+                    validator: (val) {
+                      if (val == null){
+                        'shouldnot be empty';
+                      }else{
+                        return ;
+                      }
+                    },
+                    onSaved: (val) {
+                     if (val! .isEmpty){
+                        'shouldnot be empty';
+                      }else{
+                        return ;
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextFormField(
+                    textInputType: TextInputType.name,
+                    lable: ' Status',
+                    obscureText: false,
+                    onPressed: () {},
+                    validator: (val) {
+                     if (val == null){
+                        'shouldnot be empty';
+                      }else{
+                        return ;
+                      }
+                    },
+                    onSaved: (val) {
+                      if (val! .isEmpty){
+                        'shouldnot be empty';
+                      }else{
+                        return ;
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextFormField(
+                    textInputType: TextInputType.name,
+                    lable: 'Active',
+                    obscureText: false,
+                    onPressed: () {},
+                    validator: (val) {
+                      if (val! .isEmpty){
+                        'shouldnot be empty';
+                      }else{
+                        return ;
+                      }
+                    },
+                    onSaved: (val) {
+                     if (val! .isEmpty){
+                        'shouldnot be empty';
+                      }else{
+                        return ;
+                      }
+                    },
+                    suffixIcon: Icons.arrow_drop_down,
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(340, 60),
+                      elevation: 5,
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (formKey.currentState!.validate())
+                        formKey.currentState!.save();
+
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Complete',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Complete'),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

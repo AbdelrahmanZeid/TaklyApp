@@ -17,6 +17,7 @@ class PickImageCubit extends Cubit<PickImageStates> {
 
   File? file;
   String? url;
+  
   Future<void> pickImage() async {
     try {
       final ImagePicker picker = ImagePicker();
@@ -24,7 +25,7 @@ class PickImageCubit extends Cubit<PickImageStates> {
         PickImageLoadingState(),
       );
       final XFile? image = await picker.pickImage(
-        source: ImageSource.camera,
+        source: ImageSource.gallery,
       );
 
       emit(

@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:takly/constants/app_constant.dart';
 import 'package:takly/cubits/login_cubit/login_cubit.dart';
 import 'package:takly/cubits/login_cubit/login_states.dart';
-import 'package:takly/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:takly/screens/chat_screen.dart';
+import 'package:takly/screens/home_screen.dart';
 
 import '../widgets/custom_text_form_field.dart';
 
@@ -139,7 +139,7 @@ class LoginScreen extends StatelessWidget {
                             formKey.currentState!.save();
                             Navigator.pushReplacementNamed(
                               context,
-                              ChatScreen.routeName,
+                              HomeScreen.routeName,
                             );
                           }
                         },
@@ -157,7 +157,12 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await FirebaseAuth.instance.sendPasswordResetEmail(
+                              email: chatCubit.userEmail);
+                          Get.snackbar('Reset your email',
+                              'please check your email to reset password');
+                        },
                         child: Text(
                           'Forget Password ?',
                           style: TextStyle(
