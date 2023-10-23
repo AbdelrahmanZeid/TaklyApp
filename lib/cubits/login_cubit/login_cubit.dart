@@ -13,11 +13,10 @@ class LoginCubit extends Cubit<LoginStates> {
     isviasable = !isviasable;
     emit(SwitchValueState());
   }
-  
+
   String userEmail = '';
   String userPassword = '';
   signInWithEmail() async {
-   
     try {
       emit(
         LoginLoadingState(),
@@ -42,4 +41,22 @@ class LoginCubit extends Cubit<LoginStates> {
       );
     }
   }
+
+  // reserPassword() async {
+  //   try {
+  //     emit(
+  //       ResetPasswordLoadingState(),
+  //     );
+  //     await FirebaseAuth.instance.sendPasswordResetEmail(email: userEmail);
+  //     emit(
+  //       ResetPasswordSuccessState(),
+  //     );
+  //   } catch (e) {
+  //     emit(
+  //       ResetPasswordFailuerState(
+  //         errorMessage: e.toString(),
+  //       ),
+  //     );
+  //   }
+  // }
 }

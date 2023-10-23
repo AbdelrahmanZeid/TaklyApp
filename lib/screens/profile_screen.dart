@@ -174,32 +174,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  // CustomTextFormField(
-                  //   textInputType: TextInputType.name,
-                  //   lable: 'Active',
-                  //   obscureText: false,
-                  //   onPressed: () {
-
-                  //   },
-                  //   validator: (val) {
-                  //     if (val!.isEmpty) {
-                  //       'shouldnot be empty';
-                  //     } else {
-                  //       return;
-                  //     }
-                  //   },
-                  //   onSaved: (val) {
-                  //     if (val!.isEmpty) {
-                  //       'shouldnot be empty';
-                  //     } else {
-                  //       return;
-                  //     }
-                  //   },
-                  //   suffixIcon: Icons.arrow_drop_down,
-                  // ),
-                  // const SizedBox(
-                  //   height: 60,
-                  // ),
+                 
 
                   const SizedBox(height: 10,),
                   ElevatedButton(

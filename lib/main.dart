@@ -10,6 +10,7 @@ import 'package:takly/cubits/pick_image_cubit/pick_image_cubit.dart';
 import 'package:takly/cubits/send_messsage_cubit/send_message_cubit.dart';
 import 'package:takly/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:takly/screens/chat_screen.dart';
+import 'package:takly/screens/continue_with_phone_screen.dart';
 import 'package:takly/screens/forget_password_screen.dart';
 import 'package:takly/screens/home_screen.dart';
 import 'package:takly/screens/login_screen.dart';
@@ -71,6 +72,7 @@ class Takly extends StatelessWidget {
           WelcomeScreen.routeName: (context) => WelcomeScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
           ForgetPassword.routeName:(context)=>ForgetPassword(),
+          ContinueWithPhone.routeName:(context) =>ContinueWithPhone(), 
         },
       ),
     );

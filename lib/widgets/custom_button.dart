@@ -5,12 +5,12 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.btnText,
     this.imagePath,
-    required this.socialName,
+     this.socialName,
     required this.onPressed,
   });
   final String btnText;
   final String? imagePath;
-  final String socialName;
+  final String? socialName;
   final VoidCallback onPressed;
 
   @override
